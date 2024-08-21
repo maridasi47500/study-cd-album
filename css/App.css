@@ -1,0 +1,90 @@
+#div1{
+height:200px;
+width:100%;
+overflow-y:scroll;
+}
+
+.loading-image {
+	  position: absolute;
+	    top: 50%;
+	      left: 50%;
+	        z-index: 10;
+	}
+	.loader
+	{
+		    display: none;
+		        width:200px;
+			    height: 200px;
+			        position: fixed;
+				    top: 50%;
+				        left: 50%;
+					    text-align:center;
+					        margin-left: -50px;
+						    margin-top: -100px;
+						        z-index:2;
+							    overflow: auto;
+						    }
+
+
+.header {
+	width:100%;
+	clear:both;
+	float:left;
+
+}
+.pic{
+	width:30%;
+	float:left;
+	text-align:center;
+}
+.aipic1 {
+	    width: 50px;
+	        height: 50px;
+		    border: 0px solid red;
+		        border-radius: 999999999px;
+			        border-top-left-radius: 999999999px;
+			        border-top-right-radius: 999999999px;
+		}
+.aipic {
+	    width: 50px;
+	        height: 50px;
+		    border: 3px solid red;
+		        border-radius: 999999999px;
+			        border-top-left-radius: 999999999px;
+			        border-top-right-radius: 999999999px;
+		}
+.pic img {
+	    width: 100px;
+	        height: 100px;
+		    border: 3px solid red;
+		        border-radius: 999999999px;
+		}
+.info{
+	width:70%;
+	float:left;
+}
+span.username {
+	    font-size: 23px;
+    }
+    .nom  {
+	    font-weight:700;
+    }
+    p.username {
+	        background: #80808047;
+		    width: fit-content;
+		        padding-right: 20px;
+			    padding-left: 20px;
+			        border-radius: 999999999px;
+
+			}
+			.card.show {
+				  flex-direction: row;
+			  }
+			  .card.show img.card-img-top {
+				    width: 50%;
+			    }
+			    #map {
+				    		width:100%;
+									height:200px;
+											}
+#map { width:100%;height:200px;}

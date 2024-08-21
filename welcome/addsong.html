@@ -1,0 +1,54 @@
+<h2>add song</h2>
+<form action="/newsong" method="post">
+	<div class="field">
+		<label for="user_artist">artist
+		</label>
+		<input type="text" name="artist" id="user_artist" />
+	</div>
+	<div class="field">
+		<label for="user_filename">filename
+		</label>
+		<input type="file" name="filename" id="user_filename" />
+	</div>
+	<div class="field">
+		<label for="user_title">title
+		</label>
+		<input type="text" name="title" id="user_title" />
+	</div>
+	<div class="field">
+		<label for="user_image">image
+		</label>
+		<input type="file" name="image" id="user_image" />
+	</div>
+	<div class="field">
+		<label for="user_link">link
+		</label>
+		<input type="text" name="link" id="user_link" />
+	</div>
+	<div class="field">
+		<label for="user_mytext">mytext
+		</label>
+		<input type="text" name="mytext" id="user_mytext" />
+	</div>
+	<div class="actions">
+		<input type="submit" name="submit" value="envoyer" id="user_submit" />
+	</div>
+
+</form>
+<table>
+	<tr>
+		<td>artist
+		</td>
+		<td>filename
+		</td>
+		<td>title
+		</td>
+		<td>image
+		</td>
+		<td>link
+		</td>
+		<td>mytext
+		</td>
+	</tr>
+	<%=render_collection(collection=db.Song.getall(), partial='welcome/_song.html', as_='song')%>
+</table>

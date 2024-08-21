@@ -1,0 +1,97 @@
+<form action="/newsong" method="post">
+<div class="field">
+<label for="user_mytype">mytype
+</label>
+<select name="mytype" id="user_mytype"> 
+	<option value="album">album</option>
+	<option value="cd">cd</option>
+
+
+</select>
+</div>
+<div class="field">
+<label for="user_instrument_id">instrument_id
+</label>
+<select name="instrument_id" id="user_instrument_id" />
+	<option value="1">violin</option>
+
+
+</select>
+</div>
+<div class="field">
+<label for="user_satz">satz
+</label>
+<input type="text" name="satz" id="user_satz" />
+</div>
+<div class="field">
+<label for="user_composer">compositor
+</label>
+<input type="text" name="composer" id="user_composer" />
+</div>
+<div class="field">
+<label for="user_name">name
+</label>
+<input type="text" name="name" id="user_name" />
+</div>
+<div class="field">
+<label for="user_number">number
+</label>
+<input type="text" name="number" id="user_number" />
+</div>
+<div class="field">
+<label for="user_ton">ton
+</label>
+<input type="text" name="ton" id="user_ton" />
+</div>
+<div class="field">
+<label for="user_opus">opus
+</label>
+<input type="text" name="opus" id="user_opus" />
+</div>
+<div class="field">
+<label for="user_myspeed">speed de l'enregistrement
+</label>
+<input type="text" name="myspeed" id="user_myspeed" />
+</div>
+<div class="field">
+<label for="user_speed">speed pour s'entrainer(66,80,92)
+</label>
+<input type="text" name="speed" id="user_speed" />
+</div>
+<div class="field">
+<label for="user_aegal">a = (440hz, 443hz)
+</label>
+<input type="number" name="aegal" id="user_aegal" />
+</div>
+<div class="field">
+<label for="user_metronome">metronome(1/2,1/4)
+</label>
+<input type="text" name="metronome" id="user_metronome" />
+</div>
+<div class="actions">
+<input type="submit" name="submit" value="envoyer" id="user_submit" />
+</div>
+</form>
+<table>
+<tr>
+<td>opus
+</td>
+<td>speed
+</td>
+<td>ton
+</td>
+<td>number
+</td>
+<td>name
+</td>
+<td>composer
+</td>
+<td>instrument_id
+</td>
+<td>mytype
+</td>
+</tr>
+<%=render_collection(collection=db.Song.getall(), partial='welcome/_song.html', as_='song')%>
+</table>
+
+

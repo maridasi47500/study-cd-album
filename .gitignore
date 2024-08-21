@@ -1,0 +1,4 @@
+uploads/*
+.env
+myFileDb.db
+__pycache__/*

@@ -1,0 +1,80 @@
+<h2>s'inscrire</h2>
+<form method="post" action="/save_user">
+<input type="hidden" name="lat" id="champlat"/>
+<input type="hidden" name="lon" id="champlon"/>
+<table>
+<tr>
+<td rowspan="10"><img id="mypic" src=""/><br>
+my pic
+<input type="file" name="mypic"/>
+<br>
+name
+<input type="text" name="nomcomplet"/>
+
+</td>
+	<td>
+			        <label for="myjob" >numéro de téléphone</label>
+
+				        <select required id="myjob" name="job_id">
+						                <option value="">sélectionnez un job</option>
+								                    <%=render_collection(collection=db.Job.getall(), partial='user/_job.html', as_='job')%>
+										            </select>
+	</td>
+</tr>
+<tr>
+	<td class="field phone_fields">
+		        <label for="pays_telephone" hidden="true">pays du numéro de téléphone</label>
+			        <label for="numero_telephone" >numéro de téléphone</label>
+
+				        <select required id="pays_telephone" name="country_id">
+						                <option value="">sélectionnez un pays</option>
+								                    <%=render_collection(collection=db.Country.getall(), partial='user/_pays.html', as_='pays')%>
+										            </select>
+
+											    <input id="numero_telephone" type="number" required name="phone"/>
+
+	</td>
+<td colspan="2">gender
+<select name="gender">
+	<option value="f">F</option>
+	<option value="m">M</option>
+</select>
+
+</td>
+</tr>
+<tr>
+</tr>
+<tr>
+<td colspan="2">Description
+	<textarea name="description"></textarea>
+
+</td>
+<td colspan="2">Email
+<input type="text" name="email"/>
+
+</td>
+</tr>
+<tr>
+</tr>
+<tr>
+</tr>
+
+<tr>
+<td>
+	password 
+<input type="password" name="password"/>
+<br>
+	password ocnfirmation
+<input type="password" name="password_confirmation"/>
+<br>
+<input type="submit" name="envoyer" value="envoyer"/>
+</td>
+</tr>
+</table>
+</table>
+</form>
+<div id="imap">
+				    <div id="map" onclick="onMapClick(event);">
+					    				    			            <!-- Ici s'affichera la carte -->
+													    								    				        </div>
+																																								</div>

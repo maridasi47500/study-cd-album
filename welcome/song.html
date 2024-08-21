@@ -1,0 +1,74 @@
+<%song=params["song"]%>
+<h1>Play It - study-<%=song["mytype"]%> for violin: <%=song["composer"]%>, <%=song["name"]%> No. <%=song["number"]%>, <%=song["ton"]%><%=" , opus "+song["opus"] if song["opus"] != "" else ""%>, satz <%=song["satz"]%> </h1>
+
+<%awesome=list(map(lambda s: {"speed":s}, song["speed"].split(",")))%>
+<%=render_collection(collection=awesome, partial='welcome/_speed.html', as_='speed',mylocals={"mysong":song})%>
+
+
+<div hidden id="trackspeed">1</div>
+<div hidden id="lyrichash">{}</div>
+<div hidden id="track_list"><%=json.dumps(db.Song.track_list(song["id"]))%></div>
+<div hidden id="curr_time_m"></div>
+<div hidden id="mycurrtrack"></div>
+<div class="player">
+
+    <!-- Define the section for displaying details -->
+    <div class="details">
+      <div class="now-playing">PLAYING x OF y</div>
+      <div class="track-art"></div>
+      <div class="track-id" hidden></div>
+      <div class="track-name">Track Name</div>
+      <div class="track-artist">Track Artist</div>
+    </div>
+<p id="displaylyric"></p>
+
+    <!-- Define the section for displaying track buttons -->
+    <div class="buttons">
+</div>
+    <div class="buttons">
+      <div class="prev-track" onclick="prevTrack()">
+        &#x25C0;&#x25C0;
+      </div>
+      <div class="playpause-track" onclick="playpauseTrack()">
+        &#x25B6;
+      </div>
+      <div class="next-track" onclick="nextTrack()">
+        &#x25B6;
+        &#x25B6;
+      </div>
+    </div>
+
+    <!-- Define the section for displaying the seek slider-->
+    <div class="slider_container">
+      <div class="current-time">00:00</div>
+      <input type="range" min="1" max="100"
+        value="0" class="seek_slider" onchange="seekTo()">
+      <div class="total-duration">00:00</div>
+    </div>
+
+    <!-- Define the section for displaying the volume slider-->
+    <div class="slider_container">
+      &#x1F509;
+      <input type="range" min="1" max="100"
+        value="99" class="volume_slider" onchange="setVolume()">
+      &#x1F50A;
+    </div>
+  </div>
+<ul class="lyrics">
+</ul>
+
+<%myuserjob=db.User.getbyid(session["user_id"])["job_id"]%>
+<div hidden id="jobid">
+	<%=myuserjob%>
+
+</div>
+<div id="track-link">
+
+</div>
+<div class="btn-button" >
+<div id="stopbutton" onclick="this.dataset.stop='1';this.style.background='red';" data-stop="0">
+	STOP
+</div>
+</div>
+
+
