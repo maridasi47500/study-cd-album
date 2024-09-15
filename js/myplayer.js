@@ -104,7 +104,7 @@ function playpauseTrack() {
 function replayTrack() {
   // Play the loaded track
   resetValues();
-  curr_track.playbackRate=parseFloat(trackspeed.innerHTML);
+  curr_track.playbackRate=parseFloat(trackspeed.innerHTML)/100.0;
   curr_track.play();
   isPlaying = true;
   playpause_btn.innerHTML = '&#x2016;';
@@ -166,7 +166,7 @@ function nextTrackError(e,err) {
 
   }
   loadTrack(track_index);
-  playTrack();
+  replayTrack();
   }
 }
 function nextTrack() {
@@ -191,7 +191,7 @@ function nextTrack() {
   }
   loadTrack(track_index);
 
-  playTrack();
+  replayTrack();
 }
  
 function idontlike() {
@@ -253,9 +253,6 @@ function seekUpdate() {
     curr_time.textContent = currentMinutes + ":" + currentSeconds;
 
     curr_time_m.textContent = currentMinutes + ":" + currentSeconds+"."+currentmilliSeconds;
-    if (myhash[document.querySelector('#mycurrtrack').innerHTML][(currentMinutes + ":" + currentSeconds+"."+currentmilliSeconds)]){
-      displaylyric.innerHTML=myhash[document.querySelector('#mycurrtrack').innerHTML][(currentMinutes + ":" + currentSeconds+"."+currentmilliSeconds)];
-     };
     total_duration.textContent = durationMinutes + ":" + durationSeconds;
     
 
@@ -266,3 +263,101 @@ function seekUpdate() {
 
 // Load the first track in the tracklist
 loadTrack(track_index);
+const synth = window.speechSynthesis;
+var utterThis = new SpeechSynthesisUtterance("hello");
+let voices = [];
+//if(synth.onvoiceschanged !== undefined)
+//{
+//
+//	synth.onvoiceschanged = () => populateVoiceList();
+//
+//}
+//function populateVoiceList()
+//{
+
+//window.speechSynthesis.onvoiceschanged = setTimeout(function() {
+  synth.getVoices(); // now should have an array of all voices
+setTimeout(() => {
+  //synth.getVoices(); // now should have an array of all voices
+  voices = synth.getVoices().sort(function (a, b) {
+    const aname = a.name.toUpperCase();
+    const bname = b.name.toUpperCase();
+console.log(aname,bname);
+
+    if (aname < bname) {
+      return -1;
+    } else if (aname == bname) {
+      return 0;
+    } else {
+      return +1;
+    }
+  });
+
+}, 2000);
+
+
+
+
+
+//}
+
+
+function speak(myvalue,rate=1) {
+  pauseTrack();
+  if (window.filesize > 1024*5) {
+    alert('max upload size is 5k');
+return false;
+  }
+    var fdata= new FormData();
+fdata.set('speak', myvalue) 
+  $.ajax({
+    // Your server script to process the upload
+    url: "/speak",
+    type: "post",
+
+    // Form data
+    data: fdata,
+
+    // Tell jQuery not to process data or worry about content-type
+    // You *must* include these options!
+    cache: false,
+    contentType: false,
+    processData: false,
+
+    // Custom XMLHttpRequest
+    success: function (data) {
+            console.log("HEY")
+            console.log(JSON.stringify(data))
+            console.log(JSON.stringify(data.redirect))
+nextTrack();
+},
+          beforeSend: function(){
+                         $('.loader').show()
+                     },
+          complete: function(){
+                         $('.loader').hide();
+                    },
+    xhr: function () {
+      var myXhr = $.ajaxSettings.xhr();
+      if (myXhr.upload) {
+        // For handling the progress of the upload
+        myXhr.upload.addEventListener('progress', function (e) {
+          if (e.lengthComputable) {
+            $('progress').attr({
+              value: e.loaded,
+              max: e.total,
+            });
+          }
+        }, false);
+      }
+      return myXhr;
+    }
+  });
+        return false;
+
+
+}
+
+
+
+

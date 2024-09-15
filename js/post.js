@@ -1,6 +1,6 @@
 $(function(){
 //$('.carousel').carousel();
-$('form:not(.ecriretextchat)').on('submit', function () {
+$('form:not(.ecriretextchat):not(.heythere)').on('submit', function () {
   if (window.filesize > 1024*5) {
     alert('max upload size is 5k');
 return false;

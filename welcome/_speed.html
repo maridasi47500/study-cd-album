@@ -1,4 +1,4 @@
-<div data-myspeed="" onclick="trackspeed.innerHTML = this.dataset.myspeed;replayTrack();">
+<div data-myspeed="<%=(float(speed["speed"])/float(mysong["myspeed"]))*100%>" onclick="trackspeed.innerHTML = this.dataset.myspeed;speak('Play It - study-<%=mysong["mytype"]%> for violin: <%=mysong["composer"]%>, <%=mysong["name"]%> No. <%=mysong["number"]%>, <%=mysong["ton"]%><%=" , opus "+mysong["opus"] if mysong["opus"] != "" else ""%>,'+this.innerHTML);">
 	satz <%=mysong["satz"]%>, <%=mysong["metronome"]%> = <%=speed["speed"]%>, a = <%=mysong["aegal"]%>Hz
 
 </div>

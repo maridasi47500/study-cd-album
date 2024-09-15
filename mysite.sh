@@ -1,1 +1,1 @@
-python3.9 server.py 3001
+python3 server.py 3001

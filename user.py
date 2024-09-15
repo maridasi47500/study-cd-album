@@ -52,9 +52,10 @@ class User(Model):
         return row
     def getbyid(self,myid):
         self.cur.execute("select * from user where id = ?",(myid,))
-        row=dict(self.cur.fetchone())
-        print(row["id"], "row id")
-        job=self.cur.fetchall()
+        try:
+          row=dict(self.cur.fetchone())
+        except:
+          row=dict({"id":None})
         return row
     def create(self,params):
         print("ok")

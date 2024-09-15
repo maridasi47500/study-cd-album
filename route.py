@@ -4,6 +4,7 @@ from user import User
 from country import Country
 from somehtml import Somehtml
 from scriptpython import Scriptpython
+from speak import Speak
 
 from mymusic import Music
 
@@ -18,6 +19,7 @@ import sys
 class Route():
     def __init__(self):
         self.dbUsers=User()
+        self.Speak=Speak
 
         self.Program=Directory("become 1 builder")
         self.Program.set_path("./")
@@ -208,8 +210,13 @@ class Route():
             self.set_notice("erreur ; pas ok pour la creation de votre couragejournal")
             self.set_json("{\"redirect\":\"/addcouragejournal\"}")
             return self.render_figure.render_json()
+    def speak(self,params={}):
+        myparam=self.get_post_data()(params=("speak",))
+        self.Speak(myparam["speak"]).talk()
+        self.set_json("{\"redirect\":\"/vrsong\"}")
+        return self.render_figure.render_json()
     def newsong(self,params={}):
-        myparam=self.get_post_data()(params=("metronome","aegal","myspeed","satz","opus","speed","ton","number","name","composer","instrument_id","mytype"))
+        myparam=self.get_post_data()(params=("filename","metronome","aegal","myspeed","satz","opus","speed","ton","number","name","composer","instrument_id","mytype"))
         song=self.db.Song.create(myparam)
         if song["song_id"]:
             self.set_notice("votre song a été créé(e)")
@@ -277,6 +284,7 @@ class Route():
             ROUTES={
             '^/signin$': self.signin,
             '^/newsong$': self.newsong,
+            '^/speak$': self.speak,
             '^/chat$': self.chat,
             '^/logmeout$':self.logout,
 

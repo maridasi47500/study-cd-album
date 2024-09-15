@@ -11,6 +11,7 @@ class Song(Model):
         self.cur.execute("""create table if not exists song(
         id integer primary key autoincrement,
         opus text,
+        filename text,
             speed text,
             ton text,
             number text,
@@ -51,9 +52,9 @@ class Song(Model):
         for x in row:
             malist.append({
             "id": x["id"],
-            "name": x["title"],
-            "artist": x["artist"],
-            "image": ("/uploads/"+x["image"] or "https://source.unsplash.com/Qrspubmx6kE/640x360"),
+            "name": x["name"]+" "+x["number"],
+            "artist": x["composer"],
+            "image": ("https://source.unsplash.com/Qrspubmx6kE/640x360"),
             "path": "/uploads/"+x["filename"]
             })
         return malist
@@ -75,7 +76,7 @@ class Song(Model):
         print(myhash,myhash.keys())
         myid=None
         try:
-          self.cur.execute("insert into song (myspeed,metronome,aegal,satz,opus,speed,ton,number,name,composer,instrument_id,mytype) values (:myspeed,:metronome,:aegal,:satz,:opus,:speed,:ton,:number,:name,:composer,:instrument_id,:mytype)",myhash)
+          self.cur.execute("insert into song (filename,myspeed,metronome,aegal,satz,opus,speed,ton,number,name,composer,instrument_id,mytype) values (:filename,:myspeed,:metronome,:aegal,:satz,:opus,:speed,:ton,:number,:name,:composer,:instrument_id,:mytype)",myhash)
           self.con.commit()
           myid=str(self.cur.lastrowid)
         except Exception as e:
