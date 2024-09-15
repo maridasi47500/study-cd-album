@@ -300,6 +300,7 @@ console.log(aname,bname);
 
 
 //}
+var request;
 
 
 function speak(myvalue,rate=1) {
@@ -310,7 +311,10 @@ return false;
   }
     var fdata= new FormData();
 fdata.set('speak', myvalue) 
-  $.ajax({
+if (request) {
+request.abort();
+}
+  request=$.ajax({
     // Your server script to process the upload
     url: "/speak",
     type: "post",

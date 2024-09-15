@@ -18,6 +18,7 @@ class Speak:
   def talk(self,hey=""):
     Fichier("./","hello.txt").ecrire(self.hey)
     self.someargs=["espeak-ng","-v","en+f2","-f","hello.txt"]
+    runmyscript(["sh","speak.sh"],stderr=subprocess.STDOUT)
     runmyscript(self.someargs,stderr=subprocess.STDOUT)
     #call(self.someargs,stdout=FNULL,stderr=subprocess.STDOUT)
   def myargs(self,a):
