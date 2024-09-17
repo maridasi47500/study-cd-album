@@ -304,6 +304,7 @@ var request;
 
 
 function speak(myvalue,rate=1) {
+myvalue=myvalue.replaceAll("="," égal ");
   pauseTrack();
   if (window.filesize > 1024*5) {
     alert('max upload size is 5k');

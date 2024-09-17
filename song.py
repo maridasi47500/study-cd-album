@@ -17,6 +17,7 @@ class Song(Model):
             number text,
             name text,
             satz text,
+            mouvement text,
             metronome text,
             aegal text,
             myspeed text,
@@ -76,7 +77,7 @@ class Song(Model):
         print(myhash,myhash.keys())
         myid=None
         try:
-          self.cur.execute("insert into song (filename,myspeed,metronome,aegal,satz,opus,speed,ton,number,name,composer,instrument_id,mytype) values (:filename,:myspeed,:metronome,:aegal,:satz,:opus,:speed,:ton,:number,:name,:composer,:instrument_id,:mytype)",myhash)
+          self.cur.execute("insert into song (mouvement, filename,myspeed,metronome,aegal,satz,opus,speed,ton,number,name,composer,instrument_id,mytype) values (:mouvement,:filename,:myspeed,:metronome,:aegal,:satz,:opus,:speed,:ton,:number,:name,:composer,:instrument_id,:mytype)",myhash)
           self.con.commit()
           myid=str(self.cur.lastrowid)
         except Exception as e:

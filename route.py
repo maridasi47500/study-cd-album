@@ -155,68 +155,13 @@ class Route():
             self.set_session(self.user)
             self.set_json("{\"redirect\":\"/sign_up\"}")
             return self.render_figure.render_json()
-    def newgoals(self,params={}):
-        myparam=self.get_post_data()(params=("timeframe","logistics","execution","mission"))
-        goals=self.db.Goals.create(myparam)
-        if goals["goals_id"]:
-            self.set_notice("votre goals a été créé(e)")
-            self.set_json("{\"redirect\":\"/addgoals\"}")
-            return self.render_figure.render_json()
-        else:
-            self.set_notice("erreur ; pas ok pour la creation de votre goals")
-            self.set_json("{\"redirect\":\"/addgoals\"}")
-            return self.render_figure.render_json()
-    def newasif(self,params={}):
-        myparam=self.get_post_data()(params=("speech","facial","body","accessories"))
-        asif=self.db.Asif.create(myparam)
-        if asif["asif_id"]:
-            self.set_notice("votre asif a été créé(e)")
-            self.set_json("{\"redirect\":\"/addasif\"}")
-            return self.render_figure.render_json()
-        else:
-            self.set_notice("erreur ; pas ok pour la creation de votre asif")
-            self.set_json("{\"redirect\":\"/addasif\"}")
-            return self.render_figure.render_json()
-    def newfourpointfield(self,params={}):
-        myparam=self.get_post_data()(params=("mission","situation","execution","contingencies"))
-        fourpointfield=self.db.Fourpointfield.create(myparam)
-        if fourpointfield["fourpointfield_id"]:
-            self.set_notice("votre fourpointfield a été créé(e)")
-            self.set_json("{\"redirect\":\"/addfourpointfield\"}")
-            return self.render_figure.render_json()
-        else:
-            self.set_notice("erreur ; pas ok pour la creation de votre fourpointfield")
-            self.set_json("{\"redirect\":\"/addfourpointfield\"}")
-            return self.render_figure.render_json()
-    def newcouragelog(self,params={}):
-        myparam=self.get_post_data()(params=("event","fear","action","result"))
-        couragelog=self.db.Couragelog.create(myparam)
-        if couragelog["couragelog_id"]:
-            self.set_notice("votre couragelog a été créé(e)")
-            self.set_json("{\"redirect\":\"/addcouragelog\"}")
-            return self.render_figure.render_json()
-        else:
-            self.set_notice("erreur ; pas ok pour la creation de votre couragelog")
-            self.set_json("{\"redirect\":\"/addcouragelog\"}")
-            return self.render_figure.render_json()
-    def newcouragejournal(self,params={}):
-        myparam=self.get_post_data()(params=("event","fear","action","result"))
-        couragejournal=self.db.Couragejournal.create(myparam)
-        if couragejournal["couragejournal_id"]:
-            self.set_notice("votre couragejournal a été créé(e)")
-            self.set_json("{\"redirect\":\"/addcouragejournal\"}")
-            return self.render_figure.render_json()
-        else:
-            self.set_notice("erreur ; pas ok pour la creation de votre couragejournal")
-            self.set_json("{\"redirect\":\"/addcouragejournal\"}")
-            return self.render_figure.render_json()
     def speak(self,params={}):
         myparam=self.get_post_data()(params=("speak",))
         self.Speak(myparam["speak"]).talk()
         self.set_json("{\"redirect\":\"/vrsong\"}")
         return self.render_figure.render_json()
     def newsong(self,params={}):
-        myparam=self.get_post_data()(params=("filename","metronome","aegal","myspeed","satz","opus","speed","ton","number","name","composer","instrument_id","mytype"))
+        myparam=self.get_post_data()(params=("mouvement","filename","metronome","aegal","myspeed","satz","opus","speed","ton","number","name","composer","instrument_id","mytype"))
         song=self.db.Song.create(myparam)
         if song["song_id"]:
             self.set_notice("votre song a été créé(e)")
