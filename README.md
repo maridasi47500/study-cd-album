@@ -7,3 +7,5 @@ sh mysite
 - Play It - study-album for violin: de beriot, konzert numero 9 No. 9, a minor , opus 104, satz 1 
  - à plusieurs vitesses
 # study-cd-album
+![alt text](sonata1.png)
+![alt text](sonata2.png)
